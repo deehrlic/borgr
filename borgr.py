@@ -15,7 +15,7 @@ def home():
     # initialize client
     radar = RadarClient('prj_test_pk_d75f2dd9a1887939b58e7b9dcbf4c3c81e0f47d2')
 
-    return request.headers.getlist("X-Forwarded-For")
+    return request.headers.getlist("X-Forwarded-For")[0]
 
     #geocode, ip = ipU
     cod = radar.geocode.ip('67.180.133.255')
