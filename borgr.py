@@ -2,7 +2,7 @@ import socket, requests
 import os
 from radar import RadarClient
 import re
-from flask import Flask
+from flask import Flask, request
 import webbrowser
 
 app = Flask(__name__)
@@ -10,8 +10,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 
-    host = socket.gethostname()
-    ipU = socket.gethostbyname(host)
+    ipU = request.environ['REMOTE_ADDR']
 
     print(ipU)
 
