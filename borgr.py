@@ -12,17 +12,18 @@ def home():
 
     ipU = request.environ['REMOTE_ADDR']
 
-    return ipU
-
-    print(ipU)
-
     # initialize client
     radar = RadarClient('prj_test_pk_d75f2dd9a1887939b58e7b9dcbf4c3c81e0f47d2')
 
+    return request.headers['X-Forwarded-For']
+
     #geocode, ip = ipU
-    cod = radar.geocode.ip(ip=ipU)
+    cod = radar.geocode.ip()
     print(cod.latitude)
     print(cod.longitude)
+
+    print("COD ",cod)
+
     user_location=(cod.latitude,cod.longitude)
     search = radar.search.places(near=user_location, categories="burger-restaurant")
     print(search[0].name)
