@@ -33,7 +33,7 @@ def home():
     search = radar.search.places(near=user_location, categories="burger-restaurant")
 
     if len(search) == 0:
-        return 'Radar.io does not think there is a burger restaurant near you. :('
+        return 'Radar.io does not think there is a burger restaurant near you. Try going on data and hitting the button again if you are on mobile. :('
 
     print(search[0].name)
     name = search[0].name
