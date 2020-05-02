@@ -12,6 +12,8 @@ def home():
 
     ipU = request.environ['REMOTE_ADDR']
 
+    return ipU
+
     print(ipU)
 
     # initialize client
