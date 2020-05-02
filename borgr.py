@@ -19,7 +19,7 @@ def home():
     radar = RadarClient('prj_test_pk_d75f2dd9a1887939b58e7b9dcbf4c3c81e0f47d2')
 
     #geocode, ip = ipU
-    cod = radar.geocode.ip(ip='107.77.199.117')
+    cod = radar.geocode.ip(ip=ipU)
     print(cod.latitude)
     print(cod.longitude)
     user_location=(cod.latitude,cod.longitude)
