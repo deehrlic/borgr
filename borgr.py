@@ -2,12 +2,16 @@ import socket, requests
 import os
 from radar import RadarClient
 import re
-from flask import Flask, request
+from flask import Flask, request, redirect, render_template
 import webbrowser
 
 app = Flask(__name__)
 
 @app.route('/')
+def start():
+    return render_template("frontpage.html")
+
+@app.route('/handle', methods=['GET', 'POST'])
 def home():
 
     ipU = request.environ['REMOTE_ADDR']
@@ -19,6 +23,7 @@ def home():
 
     #geocode, ip = ipU
     cod = radar.geocode.ip(request.headers['X-Forwarded-For'])
+    #cod = radar.geocode.ip('107.77.199.117')
     print(cod.latitude)
     print(cod.longitude)
 
@@ -43,13 +48,11 @@ def home():
     addr = "https://www.google.com/maps/search/"+toFormat+"/@"+str(cod.latitude)+","+str(cod.longitude)
     print(addr)
 
-    #webbrowser.open_new_tab(addr)
-
-    return addr
+    return redirect(addr)
 
 #https://www.google.com/maps/search/branded+burger+co/@32.5131302,-96.9722533
 
-#67.180.133.255
+
 
 if __name__ == "__main__":
     app.run(debug=True)
